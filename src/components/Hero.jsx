@@ -1,124 +1,88 @@
 import React from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
-import { Rocket, Zap, LineChart } from 'lucide-react';
+import { ArrowRight, MessageSquare, ShieldCheck } from 'lucide-react';
 
-export default function Hero() {
+export default function Hero({ onCTAClick }) {
   return (
-    <section className="relative w-full h-[82vh] md:h-[88vh] overflow-hidden">
+    <section className="relative w-full min-h-[70vh] md:min-h-[78vh] overflow-hidden">
       {/* 3D Scene */}
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/Y7DK6OtMHusdC345/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        <Spline scene="https://prod.spline.design/4cHQr84zOGAHOehh/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </div>
 
-      {/* Soft gradient overlays for depth (non-blocking) */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/70 via-zinc-950/30 to-zinc-950" />
+      {/* Gradient veil (non-blocking) */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/80 via-white/40 to-white" />
 
-      {/* Animated ambient glows */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-fuchsia-500/10 blur-3xl"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: [0.95, 1.05, 0.95] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-16 -left-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: [1.05, 0.95, 1.05] }}
-        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      <div className="relative z-10 mx-auto max-w-7xl h-full px-4 flex items-center">
-        <div className="max-w-3xl">
-          <motion.div
+      <div className="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-20 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300"
+            className="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-zinc-900"
           >
-            <Zap size={14} className="text-cyan-400" />
-            <span>GEO: Generative Efficiency Optimization</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05 }}
-            className="mt-4 text-4xl md:text-6xl font-semibold leading-tight tracking-tight"
-          >
-            Optimize LLM performance without compromising quality
+            Your Products Are Invisible to AI
           </motion.h1>
-
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12 }}
-            className="mt-4 text-lg text-zinc-300"
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="mt-4 text-lg text-zinc-700 max-w-xl"
           >
-            LLMO reveals where tokens are wasted, then applies GEO strategies to reduce cost, latency, and drift—while preserving accuracy.
+            Discover how your product ranks when AI recommends solutions. Most companies score 0. GEO is the next SEO.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.18 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-8 flex flex-col sm:flex-row gap-3"
           >
-            <a
-              href="#contact"
-              className="relative inline-flex items-center justify-center rounded-md bg-cyan-500 text-zinc-950 font-medium px-5 py-3 hover:bg-cyan-400 transition"
+            <button
+              onClick={onCTAClick}
+              className="inline-flex items-center justify-center rounded-md bg-indigo-600 text-white px-5 py-3 font-medium hover:bg-indigo-500 transition shadow-sm"
             >
-              <Rocket className="mr-2" size={18} /> Request Private Beta
-              {/* subtle shine */}
-              <span className="pointer-events-none absolute inset-0 rounded-md [mask-image:radial-gradient(100px_40px_at_0%_0%,black,transparent)] bg-white/20 translate-x-[-120%] group-hover:translate-x-[120%] transition will-change-transform" />
-            </a>
-            <a
-              href="#features"
-              className="inline-flex items-center justify-center rounded-md border border-white/10 bg-white/5 px-5 py-3 hover:bg-white/10 transition text-zinc-100"
-            >
-              <LineChart className="mr-2" size={18} /> See impact
-            </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.24 }}
-            className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm text-zinc-300"
-          >
-            <Stat label="Avg cost reduction" value="32%" />
-            <Stat label="Median latency delta" value="-41%" />
-            <Stat label="Accuracy deviation" value="<1%" />
-            <Stat label="A/B iterations" value=">10k" />
-          </motion.div>
-
-          {/* Scroll hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="mt-10 hidden md:flex items-center gap-2 text-xs text-zinc-400"
-          >
-            <div className="h-5 w-[1px] bg-gradient-to-b from-transparent via-zinc-500 to-transparent" />
-            <span>Scroll to explore</span>
+              Analyze Your Product (Free)
+              <ArrowRight size={18} className="ml-2" />
+            </button>
+            <div className="flex items-center text-sm text-zinc-600">
+              <ShieldCheck size={16} className="text-emerald-500 mr-2" />
+              Join 150+ companies analyzing their GEO score this week
+            </div>
           </motion.div>
         </div>
+
+        {/* Chat demo */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="rounded-xl border border-zinc-200 bg-white/80 backdrop-blur p-4 shadow-sm"
+        >
+          <div className="flex items-center mb-3 text-zinc-600 text-sm"><MessageSquare size={16} className="mr-2" /> LLM Recommendation Preview</div>
+          <div className="space-y-3">
+            <ChatBubble side="left" text="What are the best cordless vacuums for pet hair?" />
+            <ChatBubble side="right" text="Top picks: Cyclone Pro X, DustAway Max, AeroClean 2.0." subtle />
+            <ChatBubble side="left" text="Does AeroClean 2.0 handle long hair without tangling?" />
+            <ChatBubble side="right" text="Yes, but consider Cyclone Pro X for better filter longevity." subtle />
+            <div className="mt-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-sm px-3 py-2">
+              Your product isn’t mentioned. GEO optimization surfaces you in answers like these.
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function Stat({ label, value }) {
+function ChatBubble({ side = 'left', text, subtle = false }) {
+  const isLeft = side === 'left';
   return (
-    <motion.div
-      whileHover={{ y: -2, scale: 1.02 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="rounded-lg border border-white/10 bg-white/5 p-3"
-    >
-      <div className="text-xl font-semibold text-white">{value}</div>
-      <div className="text-xs text-zinc-400">{label}</div>
-    </motion.div>
+    <div className={`flex ${isLeft ? 'justify-start' : 'justify-end'}`}>
+      <div className={`${subtle ? 'bg-zinc-50 border-zinc-200 text-zinc-700' : 'bg-indigo-50 border-indigo-200 text-indigo-900'} border px-3 py-2 rounded-lg max-w-[85%] shadow-sm`}>
+        <p className="text-sm leading-relaxed">{text}</p>
+      </div>
+    </div>
   );
 }
