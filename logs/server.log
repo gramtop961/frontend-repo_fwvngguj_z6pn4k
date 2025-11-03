@@ -3,11 +3,11 @@
 > vite
 
 
-  VITE v5.4.20  ready in 377 ms
+  VITE v5.4.20  ready in 366 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.20.1:3000/
-12:00:38 AM [vite] warning: The character ">" is not valid inside a JSX element
+12:21:32 AM [vite] warning: The character ">" is not valid inside a JSX element
 22 |            <p className="mt-3 text-zinc-300 max-w-xl">Tell us a little about your traffic and goals. We’ll follow up with sizing guidance and a GEO impact estimate for your workload.</p>
 23 |            <ul className="mt-6 text-sm text-zinc-300 list-disc list-inside space-y-1">
 24 |              <li>Best for teams with >5M monthly tokens</li>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Database, Globe, Shield, LineChart } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const features = [
   {
@@ -33,14 +34,23 @@ export default function Features() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {features.map((f) => (
-          <article key={f.title} className="rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-5 hover:border-cyan-500/40 transition">
+        {features.map((f, i) => (
+          <motion.article
+            key={f.title}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: i * 0.05 }}
+            whileHover={{ y: -4 }}
+            className="group rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-5 hover:border-cyan-500/40 transition"
+          >
             <div className="h-10 w-10 rounded-md bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-3">
               <f.icon size={18} />
             </div>
             <h3 className="text-lg font-medium text-white">{f.title}</h3>
             <p className="mt-2 text-sm text-zinc-300">{f.desc}</p>
-          </article>
+            <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent opacity-0 group-hover:opacity-100 transition" />
+          </motion.article>
         ))}
       </div>
 
@@ -55,9 +65,13 @@ export default function Features() {
 
 function DataCard({ label, value }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-white/5 p-5">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className="rounded-xl border border-white/10 bg-white/5 p-5"
+    >
       <div className="text-2xl font-semibold text-white">{value}</div>
       <div className="text-sm text-zinc-400">{label}</div>
-    </div>
+    </motion.div>
   );
 }
